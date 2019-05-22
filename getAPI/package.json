@@ -1,0 +1,11 @@
+{
+    "name": "name",
+    "description": "description",
+    "authors": "author",
+    "version": "1.0.0",
+    "main": "pathToMain",
+    "dependencies": {
+        "fastify": "^2.3.0",
+        "influx": "^5.0.7"
+    }
+}
