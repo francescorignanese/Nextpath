@@ -20,9 +20,9 @@ namespace DataSender
         static async Task Main(string[] args)
         {
             // configure Redis
-            
 
-            var redis = new RedisClient("127.0.0.1");
+            string redisIp = System.Configuration.ConfigurationSettings.AppSettings["RedisIP"];
+            var redis = new RedisClient(redisIp);
 
             while (true)
             {
@@ -35,11 +35,14 @@ namespace DataSender
                 using (var client = new HttpClient())
                 {
                     //This would be the like http://www.uber.com
-                    client.BaseAddress = new Uri("http://127.0.0.2:3000");
+                    string baseAddress = System.Configuration.ConfigurationSettings.AppSettings["baseAddress"];
+
+                    client.BaseAddress = new Uri(baseAddress);
                     //serialize your json using newtonsoft json serializer then add it to the StringContent
                     var content = new StringContent(redis.BLPop(30, "sensors_data"), Encoding.UTF8, "application/json");
                     //method address would be like api/callUber:SomePort for example
-                    var result = await client.PostAsync("http://127.0.0.2:3000/api/test/", content);
+                    string APIaddress = System.Configuration.ConfigurationSettings.AppSettings["address"];
+                    var result = await client.PostAsync(APIaddress, content);
                     string resultContent = await result.Content.ReadAsStringAsync();
 
                 }

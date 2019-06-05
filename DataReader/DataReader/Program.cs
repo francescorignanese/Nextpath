@@ -32,7 +32,8 @@ namespace DataReader
             };
 
             // configure Redis
-            var redis = new RedisClient("127.0.0.1");
+            string redisIp = System.Configuration.ConfigurationSettings.AppSettings["RedisIP"];
+            var redis = new RedisClient(redisIp);
 
             string aux_type = "";
             string aux_value = "";
