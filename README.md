@@ -15,13 +15,16 @@ InfluxDB
 
 ## Running the codes
 
-- Eseguire da prompt "docker run --name pw-redis -p 6379:6379 -d redis" per creare il database redis su docker
-- Avviare il database da prompt "docker start pw-redis"
-- Eseguire il codice del DataReader e del DataSender utilizzando Visual Studio.
-- Entrare nella cartella dei file InfluxDB e da terminale utilizzare il seguente comando: influxdb -config influxdb.conf
-- Avviare influx.exe
+- Eseguire da prompt "docker run --name pw-redis -p 6379:6379 -d redis" per creare il database redis su docker (solo l aprima volta).
+- Avviare il database da prompt "docker start pw-redis".
 - Aprire con Visual Studio Code l'API e scaricare nel file package.json le seguenti librerie di fastify e influx utilizzando il comando npm install.
 - Eseguire tramite node.js il main.js dell'API.
+- Eseguire il codice del DataReader su Visual Studio prestando attenzione ad aver installato il pacchetto NuGet "csredis".
+- Avviare DataSender utilizzando Visual Studio.
+- Entrare nella cartella dei file InfluxDB e da terminale utilizzare il seguente comando: influxdb -config influxdb.conf
+- Avviare influx.exe
+
+
 
 
 ## Authors
