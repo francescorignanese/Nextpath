@@ -16,6 +16,7 @@ InfluxDB
 ## Running the codes
 
 - Eseguire da prompt "docker run --name pw-redis -p 6379:6379 -d redis" per creare il database redis su docker
+- Avviare il database da prompt "docker start pw-redis"
 - Eseguire il codice del DataReader e del DataSender utilizzando Visual Studio.
 - Entrare nella cartella dei file InfluxDB e da terminale utilizzare il seguente comando: influxdb -config influxdb.conf
 - Avviare influx.exe
