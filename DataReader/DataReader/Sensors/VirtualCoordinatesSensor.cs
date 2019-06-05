@@ -15,7 +15,7 @@ namespace DataReader.Sensors
         {
             double x0 = 45.0;
             double y0 = 23.9;
-            int radius = 100000;
+            int radius = 1000;
 
             Random random = new Random();
 

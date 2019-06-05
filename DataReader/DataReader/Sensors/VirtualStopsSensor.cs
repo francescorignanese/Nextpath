@@ -24,7 +24,7 @@ namespace DataReader.Sensors
         public void Stop()
         {            
            
-            if ((count % 18) == 0)
+            if ((count % 6) == 0)
             {                
                 isStop = true;
                 count_fermata++;

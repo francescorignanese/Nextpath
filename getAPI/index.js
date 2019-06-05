@@ -27,8 +27,8 @@ const Influx = require('influx');
 //const influx = new Influx.InfluxDB('http://192.168.101.96:8086/mydb');
 
 const influx = new Influx.InfluxDB({
-    host: '192.168.101.172',
-    database: 'mydb',
+    host: '192.168.101.109',
+    database: 'nextpath',
     port: 8086
     //measurement: 'nextpath'
 })
