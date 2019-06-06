@@ -1,6 +1,6 @@
 # Transport Right
 
-Transport Right è un applicazione atta al rilevamento e monitoraggio di mezzi di trasporti pubblici. L’applicazione sarà in grado di ricevere dati di posizionamento (GPS) e dati provenienti da sensori (apertura porte, conta persone) agganciati a dispositivi presenti a bordo dei mezzi.
+Transport Right è un applicazione atta al rilevamento e monitoraggio di mezzi di trasporti pubblici. L’applicazione è in grado di ricevere dati di posizionamento (GPS) e dati provenienti da sensori (apertura porte, conta persone) agganciati a dispositivi presenti a bordo dei mezzi.
 
 ## Getting Started
 
@@ -8,10 +8,10 @@ Scaricare il contenuto del progetto.
 
 ### Prerequisites
 
-Visual Studio Code
-Visual Studio 2017/2019
-Redis(Docker)
-InfluxDB
+- Visual Studio Code
+- Visual Studio 2017/2019
+- Redis (Docker)
+- InfluxDB
 
 ## Running the codes
 
@@ -21,8 +21,7 @@ InfluxDB
 - Eseguire tramite node.js il main.js dell'API.
 - Eseguire il codice del DataReader su Visual Studio prestando attenzione ad aver installato il pacchetto NuGet "csredis".
 - Avviare DataSender utilizzando Visual Studio.
-- Entrare nella cartella dei file InfluxDB e da terminale utilizzare il seguente comando: influxdb -config influxdb.conf
-- Avviare influx.exe
+- Collegarsi all'indirizzo locale per visualizzare il database Influx da browser.
 
 
 
