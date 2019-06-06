@@ -25,7 +25,6 @@ Scaricare il contenuto del progetto.
 
 
 
-
 ## Authors
 
 * **Alessandro Momesso**
