@@ -39,10 +39,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Aggiunto file di configurazione connection.config per gestione degli indirizzi IP.
 
-## [0.1.2] - 2019-05-22
-### Changes
-- Minor bug fixing.
-
 ## [0.1.1] - 2019-05-22
 ### Changes
 - Minor bug fixing.
