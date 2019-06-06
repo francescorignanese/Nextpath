@@ -21,7 +21,6 @@ namespace DataReader
 				buses[i] = new Thread(Bus);
 				buses[i].Start();
 				Thread.Sleep(100);
-
 			}
 		}
 
