@@ -1,7 +1,8 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2019-05-22
+
+## [0.1.0] - 2019-05-22
 ### Added
 - Creato DataSender dei dati.
 - Creato DataReader dei dati.
@@ -22,8 +23,40 @@ All notable changes to this project will be documented in this file.
 - Implementata funzione di invio dati dal database Redis all'API.
 
 
+## [0.1.1] - 2019-05-22
+### Changes
+- Minor bug fixing.
+
+
+## [0.1.2] - 2019-05-22
+### Changes
+- Minor bug fixing.
+
+
+## [0.1.3] - 2019-06-05
+### Added
+- Aggiunto file di configurazione connection.config per gestione degli indirizzi IP.
+
+
+## [0.1.4] - 2019-06-05
+### Added
+- Aggiunto multithread per poter raccogliere dati su più autobus.
+
+
+## [0.1.5] - 2019-06-05
+### Changes
+- Corretto bug che generava dati duplicati.
+
+
+## [0.1.6] - 2019-06-05
+### Added
+- Sostituito il file connection.config con il file config esterno chiamato settings.config per DataReader e DataSender.
 
 
 
-[1.0.0]: https://github.com/Francesco-Rignanese/Nextpath.git
+
+
+
+
+[Latest version]: https://github.com/Francesco-Rignanese/Nextpath.git
 
