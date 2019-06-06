@@ -21,19 +21,19 @@ const fastify = require('fastify')({
     of the same api without changing all the route names by hand, route prefixing.
 */
 
+var config = require("./config")()
+console.log(config.port);
+console.log(config.database);
+console.log(config.host);
+
 const Influx = require('influx');
 
-
-//const influx = new Influx.InfluxDB('http://192.168.101.96:8086/mydb');
-
 const influx = new Influx.InfluxDB({
-    host: '192.168.101.109',
-    database: 'nextpath',
-    port: 8086
+    host: config.host,
+    database: config.database,
+    port: config.port
     //measurement: 'nextpath'
 })
-
-
 
 fastify.post('/api/test', async (request, reply) => {
     var dati = request.body;
@@ -49,49 +49,9 @@ fastify.post('/api/test', async (request, reply) => {
         console.error(`Error saving data to InfluxDB! ${err.stack}`)
       })
 
-    
-
-
     reply.status(202).send();
 
 });
-
-/*function esQuery(){
-    influx.query(`select * FROM "nextpath"`)
-    .then( result => console.log(result) )
-    .catch( error =>  console.log({ error }) );
-  
-}*/
-
-/*function salvaSuInflux() {
-    
-    //influx.query(`show databases`)
-    /*influx.query('SELECT * FROM transportright')
-    //influx.query('insert transportright,busId=5,latitudine=6,longitudine=7 personeIn=8,personeOut=9,personeTot=10')
-        .then(result => {
-            console.log(result)
-        }).catch(err => {
-            console.log(err);
-        })*/
-
-
-
-        /*influx.writePoints([
-            {
-              measurement: 'transportright',
-              tags: { host: "aa444" },
-              fields: {  path: "b6666" },
-            }
-          ]).catch(err => {
-            console.error(`Error saving data to InfluxDB! ${err.stack}`)
-          })
-        
-}*/
-
-
-
-
-
 
 // Run the server!
 const start = async () => {
