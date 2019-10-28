@@ -41,13 +41,14 @@ fastify.post('/api/test', async (request, reply) => {
 
     influx.writePoints([
         {
-          measurement: 'transportright',
-          tags: { busId: dati.bus_id, latitudine: dati.latitude, longitudine: dati.longitude },
-          fields: { fermata: dati.stop, personeIn: dati.people_enter, personeOut: dati.people_left, personeTot: dati.counting },
+            measurement: 'transportright',
+            tags: { busId: dati.bus_id, latitudine: dati.latitude, longitudine: dati.longitude },
+            fields: { fermata: dati.stop, personeIn: dati.people_enter, personeOut: dati.people_left, personeTot: dati.counting },
         }
-      ]).catch(err => {
+    ]).catch(err => {
         console.error(`Error saving data to InfluxDB! ${err.stack}`)
-      })
+        reply.status(403).send();
+    })
 
     reply.status(202).send();
 
