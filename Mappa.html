@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+    <link rel="stylesheet" href="css/leaflet.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    
+    <title>Nextpath</title>
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="images/logonextpath.png" style="width: 20%;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="Mappa.html" style="font-size: 25px;">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gruppo" style="font-size: 25px;">Chi Siamo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#progetto" style="font-size: 25px;">Il Progetto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#map" style="font-size: 25px;">La Mappa</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <a name="gruppo">
+
+      <div id="img-nextpath">
+        <img src="images/Gruppo.png">
+      </div>
+
+        <div id="color">
+        <h1 style="text-align: center; ">I membri del gruppo</h1>
+
+        <div class="card-deck dim" >
+            <div class="card">
+                <img src="images/alessandro.jpeg " class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Andrea Filippi</h5>
+                  <p class="card-text">Svilupo DataSender e DataReader</p>
+                </div>
+              </div>
+              <div class="card">
+                  <img src="images/andrea.jpeg " class="card-img-top">
+                  <div class="card-body">
+                    <h5 class="card-title">Andrea Filippi</h5>
+                    <p class="card-text">Svilupo delle API</p>
+                  </div>
+                </div>
+                <div class="card">
+                    <img src="images/francesco.jpeg " class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Andrea Filippi</h5>
+                      <p class="card-text">Svilupo database Influx</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                      <img src="images/marco.jpeg " class="card-img-top">
+                      <div class="card-body">
+                        <h5 class="card-title">Andrea Filippi</h5>
+                        <p class="card-text">Svilupo delle API e sito web</p>
+                      </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/dema.jpeg " class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title">Andrea Filippi</h5>
+                          <p class="card-text">Svilupo database Influx</p>
+                        </div>
+                      </div>
+          </div>
+        </div>
+      </a>
+
+      <a name="progetto">
+
+            <h1 style="text-align: center; width: 100%;">Il progetto Transport Right</h1><br>
+            <img src="images/progetto.jpg">
+            <p style="text-align: center; font-size: 25px;">
+                <br>Transport Right è un applicazione atta al rilevamento e <br>
+              al monitoraggio di mezzi di trasporti pubblici. <br>
+              Essa è in grado di ricevere dati di posizionamento (GPS) <br>
+              e dati provenienti da sensori (apertura porte, conta persone) <br>
+              agganciati a dispositivi presenti a bordo dei mezzi.<br>
+            </p><br>  
+
+      </a>
+
+      <a name="map">
+      <div id="mapid">
+      </div>
+      </a>
+
+
+      <script src="java/leaflet.js"></script>
+      <script src="java/index.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+
+</body>
+</html>
