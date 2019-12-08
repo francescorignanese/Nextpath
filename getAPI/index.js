@@ -1,41 +1,86 @@
-/*
-    ignoreTrailingSlash
-    Fastify uses find-my-way to handle routing. 
-    This option may be set to true to ignore trailing slashes in routes. 
-    This option applies to all route registrations for the resulting server instance.
-*/
-
-// Require the framework and instantiate it
-
 const fastify = require('fastify')({
-    logger: true,
-    ignoreTrailingSlash: true
+  logger: true,
+  ignoreTrailingSlash: true
 });
 
 
-/*
-    Route Prefixing
-    Sometimes you need to maintain two or more different versions of the same api, 
-    a classic approach is to prefix all the routes with the api version number, /v1/user for example. 
-    Fastify offers you a fast and smart way to create different version 
-    of the same api without changing all the route names by hand, route prefixing.
-*/
+fastify.register(require('fastify-cors'));
 
-var config = require("./config")()
-console.log(config.port);
-console.log(config.database);
-console.log(config.host);
+const sql = require('mssql');
+const bcrypt = require("bcrypt");
 
-const Influx = require('influx');
-
-const influx = new Influx.InfluxDB({
-    host: config.host,
-    database: config.database,
-    port: config.port
-    //measurement: 'nextpath'
+fastify.register(require('fastify-jwt'), {
+  secret: 'supersecret'
 })
 
-fastify.post('/api/test', async (request, reply) => {
+const Influx = require('influx');
+const fs = require('fs');
+
+var config = require("./config")()
+//console.log(config.port);
+//console.log(config.database);
+//console.log(config.host);
+
+var configApi = JSON.parse(fs.readFileSync('config/configApi.json', 'utf8'));
+//console.log(configApi.user);
+//console.log(configApi.password);
+//console.log(configApi.server);
+//console.log(configApi.database);
+
+
+const influx = new Influx.InfluxDB({
+  host: config.host,
+  database: config.database,
+  port: config.port
+})
+
+
+
+//Identificazione tramite token
+
+fastify.post('/token', async (request, reply) => {
+  try {
+    let pool = await sql.connect(configApi);
+    let model = request.body;
+    var response = await pool.request().query(`select Hash from dbo.Login where Username = '${model.User}';`)
+    if (model.Hash == response.recordset[0].Hash) {
+      var user = {
+        id: 1,
+        user: "nextpathgroup"
+      };
+      const token = fastify.jwt.sign({ payload: user });
+      reply.send(token);
+    }
+    else {
+      reply.status(404).send({
+        "Error": "Lo Username o la Password sono errati"
+      });
+    }
+
+  }
+  catch (err) {
+    reply.send(err);
+  }
+});
+
+
+fastify.register(async function (fastify, opts) {
+  fastify.addHook('preHandler', async (request, reply) => {
+    try {
+      let model = request.body;
+      await request.jwtVerify(model.Token);
+    }
+    catch (err) {
+      reply.send(err);
+    }
+  });
+
+
+
+
+  // Invio dati a InfluxDB
+
+  fastify.post('/api/test', async (request, reply) => {
     var dati = request.body;
     console.log("\n" + dati.bus_id + "\n");
 
@@ -54,14 +99,17 @@ fastify.post('/api/test', async (request, reply) => {
 
 });
 
+
+
+
 // Run the server!
 const start = async () => {
-    try {
-        await fastify.listen(3000, "127.0.0.2")
-        fastify.log.info(`server listening on ${fastify.server.address().port}`)
-    } catch (err) {
-        fastify.log.error(err)
-        process.exit(1)
-    }
+  try {
+    await fastify.listen(3000, "127.0.0.2")
+    fastify.log.info(`server listening on ${fastify.server.address().port}`)
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
 }
 start();

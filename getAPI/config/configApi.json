@@ -1,0 +1,6 @@
+{
+    "user": "sa",
+    "password": "corsojs",
+    "server": "localhost\\sqlexpress",
+    "database": "Nextpath"
+}
