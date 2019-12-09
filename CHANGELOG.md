@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.9] - 2019-12-02
+### Changes
+- Implementato l'invio separato dei dati all'interno delle API. Nel caso di una fermata vengono inviati al database i dati riguardanti la posizione della fermata, il numero di persone che salgono e scendono dal mezzo nonchè in numero totale di passeggeri a bordo. Nel caso, invece, in cui non si tratti di una fermata verranno inviati solo i dati relativi alla posizione dell'autobus.
+
 ## [0.1.8] - 2019-11-18
 ### Changes
 - Aggiunta autenticazione tramite token nelle API e nuovo file di configurazione esterno chiamato configApi.
