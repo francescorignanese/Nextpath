@@ -82,20 +82,33 @@ fastify.register(async function (fastify, opts) {
 
   fastify.post('/api/test', async (request, reply) => {
     var dati = request.body;
-    console.log("\n" + dati.bus_id + "\n");
 
-    influx.writePoints([
+    //Se non è una fermata vengono inviati solo i dati di posizione
+    if (dati.stop == 'False') {
+      influx.writePoints([
         {
-            measurement: 'transportright',
-            tags: { busId: dati.bus_id, latitudine: dati.latitude, longitudine: dati.longitude },
-            fields: { fermata: dati.stop, personeIn: dati.people_enter, personeOut: dati.people_left, personeTot: dati.counting },
+          measurement: 'posizioneBus',
+          tags: { busId: dati.bus_id },
+          measurement: { latitudine: dati.latitudine, longitudine: dati.longitude }
         }
-    ]).catch(err => {
-        console.error(`Error saving data to InfluxDB! ${err.stack}`)
-        reply.status(403).send();
-    })
+      ]);
+    }
+
+    //Se è una fermata, oltre ai dati di posizione, vengono inviati anche quelli relativi alle persone che salgono e scendono e il numero totale di passeggeri a bordo
+    else {
+      influx.writePoints([
+        {
+          measurement: 'statoPorte',
+          tags: { busId: dati.bus_id },
+          fields: { fermata: dati.stop, latitudine: dati.latitudine, longitudine: dati.longitude, personeIn: dati.people_enter, personeOut: dati.people_left, personeTot: dati.counting }
+        }
+      ]);
+    }
 
     reply.status(202).send();
+
+
+  });
 
 });
 
