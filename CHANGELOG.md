@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.8] - 2019-11-18
+### Changes
+- Aggiunta autenticazione tramite token nelle API e nuovo file di configurazione esterno chiamato configApi.
+
 ## [0.1.7] - 2019-06-05
 ### Changes
 - Rimosso multithread e aggiunta la possibilità di inserire l'ID del bus manualmente nel file .config.
