@@ -1,6 +1,5 @@
 
 const Influx = require('influx');
-const fs = require('fs');
 
 var config = require("./config")()
 //console.log(config.port);
