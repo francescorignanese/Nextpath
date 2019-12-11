@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CSRedis;
 using Newtonsoft.Json;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace DataSender
 {
@@ -24,25 +26,25 @@ namespace DataSender
 
 			while (true)
 			{
-				// read from Redis queue
+				
 				Console.WriteLine(redis.BLPop(30, "sensors_data"));
+				//var content = new StringContent(redis.BLPop(30, "sensors_data"), Encoding.UTF8, "application/json");
+				string BrokerAddress = "192.168.101.67";
 
-				// send value to remote API
-				// TODO...
+				MqttClient client = new MqttClient(BrokerAddress);
 
-				using (var client = new HttpClient())
-				{
-					//This would be the like http://www.uber.com
-					string baseAddress = System.Configuration.ConfigurationSettings.AppSettings["baseAddress"];
 
-					client.BaseAddress = new Uri(baseAddress);
-					//serialize your json using newtonsoft json serializer then add it to the StringContent
-					var content = new StringContent(redis.BLPop(30, "sensors_data"), Encoding.UTF8, "application/json");
-					//method address would be like api/callUber:SomePort for example
-					string APIaddress = System.Configuration.ConfigurationSettings.AppSettings["address"];
-					var result = await client.PostAsync(APIaddress, content);
-					string resultContent = await result.Content.ReadAsStringAsync();
-				}
+				string clientId = Guid.NewGuid().ToString();
+				client.Connect(clientId);
+
+				string Topic = "/Bus";
+
+				// publish a message on "/home/temperature" topic with QoS 2
+				client.Publish(Topic, Encoding.UTF8.GetBytes(redis.BLPop(30, "sensors_data")), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+
+
+
+
 			}
 		}
 	}
