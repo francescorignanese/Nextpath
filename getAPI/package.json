@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "main": "pathToMain",
     "dependencies": {
-        "bcrypt": "^3.0.7",
+        "bcrypt": "^5.0.0",
         "fastify": "^2.3.0",
         "fastify-cors": "^2.2.0",
         "fastify-jwt": "^1.2.0",
